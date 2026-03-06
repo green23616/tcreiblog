@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# env
+.env.local
+.env*.local
+
+# debug
+npm-debug.log*
+
+# os
+.DS_Store
+
+# omc state
+.omc/
