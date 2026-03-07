@@ -1,6 +1,16 @@
 # Design Tokens — codeshelf-nextjs
+
 > Approach C: Shadcn-first with blog extensions.
 > Extracted from ref1.jpg (Motion Music) + ref2.jpg (RSC/NASA), corrected per review.md findings.
+
+## Table of Contents
+
+- [globals.css — CSS Variable Layer](#globalscss--css-variable-layer)
+  - [Base Layer Rules](#base-layer-rules)
+- [tailwind.config.ts](#tailwindconfigts)
+- [Component Usage Quick Reference](#component-usage-quick-reference)
+
+---
 
 ## globals.css — CSS Variable Layer
 
@@ -81,6 +91,25 @@
 
     /* Blog Extensions (dark overrides) */
     --border-strong: 0 0% 98%;         /* #FAFAFA */
+  }
+}
+```
+
+### Base Layer Rules
+
+Add these after the CSS variables in `globals.css`:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 ```
@@ -189,129 +218,6 @@ const config: Config = {
 };
 
 export default config;
-```
-
-## Design Token TypeScript Reference
-
-```typescript
-/**
- * ============================================================================
- * MASTER DESIGN TOKENS — codeshelf-nextjs
- * ============================================================================
- * AI INSTRUCTION:
- * Use Shadcn semantic classes: bg-background, text-foreground, bg-card,
- * text-muted-foreground, border-border, etc.
- * Use blog extension classes for layout: max-w-reading, max-w-layout,
- * grid-cols-layout, tracking-label, tracking-display, font-black.
- * Do NOT use raw hex codes. Do NOT use zinc-* palette names.
- */
-
-// ── Types ──
-export type ThemeMode = "light" | "dark";
-export type Breakpoint = "sm" | "md" | "lg" | "fhd" | "qhd" | "uhd";
-
-// ── Primitive Palette (reference only — use CSS vars in components) ──
-const palette = {
-  zinc: {
-    0:   "#FFFFFF",
-    50:  "#FAFAFA",
-    100: "#F4F4F5",
-    200: "#E4E4E7",
-    400: "#A1A1AA",
-    500: "#71717A",
-    600: "#52525B",
-    800: "#27272A",
-    900: "#18181B",
-    950: "#09090B",
-  },
-} as const;
-
-// ── Semantic Mapping (documents which primitives map to which Shadcn vars) ──
-export const themeMap = {
-  light: {
-    "--background":           palette.zinc[100],
-    "--foreground":           palette.zinc[950],
-    "--card":                 palette.zinc[0],
-    "--card-foreground":      palette.zinc[950],
-    "--primary":              palette.zinc[950],
-    "--primary-foreground":   palette.zinc[0],
-    "--secondary":            palette.zinc[200],
-    "--secondary-foreground": palette.zinc[950],
-    "--muted":                palette.zinc[100],
-    "--muted-foreground":     palette.zinc[500],  // 4.4:1 contrast ✓
-    "--accent":               palette.zinc[200],
-    "--accent-foreground":    palette.zinc[950],
-    "--border":               palette.zinc[200],
-    "--border-strong":        palette.zinc[950],
-    "--input":                palette.zinc[200],
-    "--ring":                 palette.zinc[950],
-  },
-  dark: {
-    "--background":           palette.zinc[950],
-    "--foreground":           palette.zinc[50],
-    "--card":                 palette.zinc[900],
-    "--card-foreground":      palette.zinc[50],
-    "--primary":              palette.zinc[50],
-    "--primary-foreground":   palette.zinc[950],
-    "--secondary":            palette.zinc[800],
-    "--secondary-foreground": palette.zinc[50],
-    "--muted":                palette.zinc[800],
-    "--muted-foreground":     palette.zinc[400],  // 7.8:1 contrast ✓
-    "--accent":               palette.zinc[800],
-    "--accent-foreground":    palette.zinc[50],
-    "--border":               palette.zinc[800],
-    "--border-strong":        palette.zinc[50],
-    "--input":                palette.zinc[800],
-    "--ring":                 palette.zinc[50],
-  },
-} as const;
-
-// ── Layout Constants ──
-export const layout = {
-  maxWidth:     "1280px",
-  sidebarWidth: "280px",
-  readingWidth: "65ch",
-  gridGap:      "2rem",
-} as const;
-
-// ── Spacing (8px baseline grid) ──
-export const spacing = {
-  xs:   "0.25rem",  //  4px
-  sm:   "0.5rem",   //  8px
-  md:   "1rem",     // 16px
-  lg:   "1.5rem",   // 24px
-  xl:   "2rem",     // 32px
-  "2xl": "3rem",    // 48px
-  "3xl": "4rem",    // 64px
-  "4xl": "6rem",    // 96px
-  "5xl": "8rem",    // 128px
-} as const;
-
-// ── Typography ──
-export const typography = {
-  fonts: {
-    sans: "Geist, Inter, system-ui, sans-serif",
-    mono: "Geist Mono, JetBrains Mono, monospace",
-  },
-  weights: {
-    normal:    "400",
-    medium:    "500",
-    semibold:  "600",
-    bold:      "700",
-    extrabold: "800",
-    black:     "900",  // Ref 2 display headings
-  },
-} as const;
-
-// ── Breakpoints ──
-export const breakpoints = {
-  sm:  "640px",
-  md:  "768px",
-  lg:  "1024px",
-  fhd: "1440px",
-  qhd: "2560px",
-  uhd: "3840px",
-} as const;
 ```
 
 ## Component Usage Quick Reference
