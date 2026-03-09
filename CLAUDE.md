@@ -13,9 +13,9 @@ tcrei blog — a developer blog platform for ~10 authors. Next.js 16 App Router 
 - **Data blueprint**: `docs/SCHEMA.md` (tables, RLS policies, triggers)
 - **Design system**: `docs/DESIGN_TOKENS.md` (CSS variables, Tailwind config, component usage)
 - **Current progress**: `docs/EXECUTION_PLAN.md` (task list with status checkboxes)
-- **Canonical SQL**: `supabase/migrations/00001_initial_schema.sql`
+- **Canonical SQL**: `supabase/migrations/*`
 
-**Guideline**: Always check `docs/SPEC.md` and `docs/EXECUTION_PLAN.md` first to see the current task before looking into other docs.
+**Guideline**: Always check `docs/SPEC.md` and `docs/EXECUTION_PLAN.md` first to see the current task before starting a task.
 
 ## Build Commands
 
