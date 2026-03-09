@@ -1,4 +1,4 @@
-# Design Tokens — codeshelf-nextjs
+# Design Tokens — tcrei-blog
 
 > Approach C: Shadcn-first with blog extensions.
 > Extracted from ref1.jpg (Motion Music) + ref2.jpg (RSC/NASA), corrected per review.md findings.

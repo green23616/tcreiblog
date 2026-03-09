@@ -1,4 +1,4 @@
-# EXECUTION PLAN — CodeShelf
+# EXECUTION PLAN — tcrei blog
 
 > **Guideline:** Check this file first to see the current task before looking into other docs.
 

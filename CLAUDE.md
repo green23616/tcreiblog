@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-CodeShelf — a developer blog platform for ~10 authors. Next.js 16 App Router + Supabase + Tailwind CSS + Shadcn/ui.
+tcrei blog — a developer blog platform for ~10 authors. Next.js 16 App Router + Supabase + Tailwind CSS + Shadcn/ui.
 
 ## Documentation Map
 
