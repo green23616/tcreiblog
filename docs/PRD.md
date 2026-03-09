@@ -1,16 +1,5 @@
 # PRD — tcrei blog
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Target Users](#target-users)
-- [Core Features](#core-features)
-- [Explicit Non-Features](#explicit-non-features)
-- [Auth Model](#auth-model)
-- [Scale Constraints](#scale-constraints)
-- [Design Direction](#design-direction)
-
----
 
 ## Overview
 

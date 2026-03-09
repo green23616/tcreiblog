@@ -2,17 +2,6 @@
 
 > **Guideline:** Check this file first to see the current task before looking into other docs.
 
-## Table of Contents
-
-- [Status Legend](#status-legend)
-- [Phase 1: Foundation](#phase-1-foundation) — Tasks 1–5
-- [Phase 2: Auth](#phase-2-auth) — Task 6
-- [Phase 3: Shared Components](#phase-3-shared-components) — Tasks 7–8
-- [Phase 4: Public Pages](#phase-4-public-pages) — Tasks 9–12
-- [Phase 5: Protected Pages](#phase-5-protected-pages) — Tasks 13–15
-- [Phase 6: Polish](#phase-6-polish) — Tasks 16–19
-
----
 
 ## Status Legend
 

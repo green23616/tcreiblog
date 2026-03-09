@@ -2,18 +2,6 @@
 
 > Canonical SQL source: `supabase/migrations/00001_initial_schema.sql`
 
-## Table of Contents
-
-- [Tables](#tables)
-  - [profiles](#profiles)
-  - [posts](#posts)
-  - [tags](#tags)
-  - [post_tags (junction)](#post_tags-junction)
-- [Row Level Security](#row-level-security)
-- [Triggers](#triggers)
-- [Key Queries](#key-queries)
-
----
 
 ## Tables
 
