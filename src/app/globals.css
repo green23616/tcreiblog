@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Shadcn Core Tokens (HSL without hsl() wrapper) ── */
+    --background: 240 5% 96%;          /* #F4F4F5 — Zinc 100 */
+    --foreground: 240 6% 3%;           /* #09090B — Zinc 950 */
+
+    --card: 0 0% 100%;                 /* #FFFFFF */
+    --card-foreground: 240 6% 3%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 3%;
+
+    --primary: 240 6% 3%;              /* #09090B */
+    --primary-foreground: 0 0% 100%;   /* #FFFFFF */
+
+    --secondary: 240 5% 90%;           /* #E4E4E7 — Zinc 200 */
+    --secondary-foreground: 240 6% 3%;
+
+    --muted: 240 5% 96%;               /* #F4F4F5 — Zinc 100 */
+    --muted-foreground: 240 4% 46%;    /* #71717A — Zinc 500 */
+
+    --accent: 240 5% 90%;              /* #E4E4E7 — hover bg */
+    --accent-foreground: 240 6% 3%;
+
+    --destructive: 0 84% 60%;          /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;              /* #E4E4E7 — Zinc 200, hairlines */
+    --input: 240 6% 90%;
+    --ring: 240 6% 3%;                 /* #09090B — focus ring */
+
+    --radius: 0rem;                    /* Sharp corners globally */
+    --radius-sm: 0rem;
+    --radius-md: 0rem;
+    --radius-lg: 0rem;
+    --radius-xl: 0rem;
+
+    /* ── Blog Extensions ── */
+    --border-strong: 240 6% 3%;        /* #09090B — active nav, prominent dividers */
+    --border-active-width: 2px;
+
+    --reading-width: 65ch;
+    --sidebar-width: 280px;
+    --layout-max: 1280px;
+
+    --tracking-label: 0.1em;
+    --tracking-display: -0.02em;
+  }
+
+  .dark {
+    --background: 240 6% 3%;           /* #09090B — Zinc 950 */
+    --foreground: 0 0% 98%;            /* #FAFAFA — Zinc 50 */
+
+    --card: 240 4% 10%;                /* #18181B — Zinc 900 */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 4% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;               /* #FAFAFA */
+    --primary-foreground: 240 6% 3%;   /* #09090B */
+
+    --secondary: 240 4% 16%;           /* #27272A — Zinc 800 */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 16%;               /* #27272A */
+    --muted-foreground: 240 5% 65%;    /* #A1A1AA — Zinc 400 */
+
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 16%;              /* #27272A — Zinc 800 */
+    --input: 240 4% 16%;
+    --ring: 0 0% 98%;
+
+    /* Blog Extensions (dark overrides) */
+    --border-strong: 0 0% 98%;         /* #FAFAFA */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
