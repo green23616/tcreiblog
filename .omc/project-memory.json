@@ -69,6 +69,12 @@
       "type": "file"
     },
     {
+      "path": "src/app/globals.css",
+      "accessCount": 4,
+      "lastAccessed": 1773107198665,
+      "type": "file"
+    },
+    {
       "path": "docs/SPEC.md",
       "accessCount": 3,
       "lastAccessed": 1773041970278,
@@ -87,6 +93,12 @@
       "type": "file"
     },
     {
+      "path": "package.json",
+      "accessCount": 3,
+      "lastAccessed": 1773107084590,
+      "type": "file"
+    },
+    {
       "path": "docs/PRD.md",
       "accessCount": 2,
       "lastAccessed": 1773037499630,
@@ -96,18 +108,6 @@
       "path": "docs/DESIGN_TOKENS.md",
       "accessCount": 2,
       "lastAccessed": 1773041970863,
-      "type": "file"
-    },
-    {
-      "path": "package.json",
-      "accessCount": 2,
-      "lastAccessed": 1773106946099,
-      "type": "file"
-    },
-    {
-      "path": "src/app/globals.css",
-      "accessCount": 2,
-      "lastAccessed": 1773107011045,
       "type": "file"
     },
     {
@@ -138,6 +138,24 @@
       "path": "tailwind.config.ts",
       "accessCount": 1,
       "lastAccessed": 1773106996665,
+      "type": "file"
+    },
+    {
+      "path": "components.json",
+      "accessCount": 1,
+      "lastAccessed": 1773107084647,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ui/button.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1773107117462,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "accessCount": 1,
+      "lastAccessed": 1773107117531,
       "type": "file"
     }
   ],
