@@ -14,39 +14,49 @@
 ## Phase 1: Foundation
 
 ### Task 1: Scaffold Next.js Project
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `package.json`, `tsconfig.json`, `next.config.ts`, `src/app/layout.tsx`, `src/app/page.tsx`
 - **Actions:** `pnpm create next-app@latest`, install all dependencies per `docs/SPEC.md` tech stack, install Geist font
 - **Acceptance:** `pnpm build` passes
 - **Commit:** `feat: scaffold Next.js 16 project with dependencies`
 
 ### Task 2: Configure Design Tokens + Tailwind
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `tailwind.config.ts`, `src/app/globals.css`, `src/app/layout.tsx`
 - **Actions:** Copy CSS variables and Tailwind config from `docs/DESIGN_TOKENS.md`. Configure Geist font in layout. Create test page to verify tokens.
 - **Acceptance:** `pnpm build` passes, token classes (`bg-background`, `text-muted-foreground`, `tracking-label`, `max-w-reading`) resolve correctly
 - **Commit:** `feat: configure design tokens, Tailwind, and Geist fonts`
 
 ### Task 3: Initialize Shadcn/ui
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `components.json`, `src/lib/utils.ts`, `src/components/ui/button.tsx`
 - **Actions:** `pnpm dlx shadcn@latest init`, add button/input/textarea/label/separator. Verify globals.css not overwritten.
 - **Acceptance:** Button renders with sharp corners (`--radius: 0rem`)
 - **Commit:** `feat: initialize Shadcn/ui with base components`
 
 ### Task 4: Supabase Schema + RLS
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `supabase/migrations/00001_initial_schema.sql`
 - **Actions:** SQL already written — apply to Supabase via dashboard SQL editor or `supabase db push`. Verify per `docs/SCHEMA.md`.
 - **Acceptance:** All 4 tables created, RLS policies active, trigger creates profile on signup
 - **Commit:** `feat: add Supabase schema, RLS policies, and triggers`
 
 ### Task 5: Supabase Client Helpers
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/lib/supabase/server.ts`, `src/lib/supabase/client.ts`, `src/lib/supabase/middleware.ts`, `src/middleware.ts`, `.env.local`
 - **Actions:** Create server/client/middleware Supabase helpers per `@supabase/ssr` docs. Create root middleware that protects `/write`, `/edit`, `/settings`.
 - **Acceptance:** `pnpm build` passes, protected routes redirect to `/login`
 - **Commit:** `feat: add Supabase client helpers and auth middleware`
+
+#### Phase 1 Notes
+
+> **Scaffolding:** `create-next-app` refuses non-whitelisted files in target dir. Use a temp directory and `cp -r` when the project already has files. Always use `--no-git` in an existing repo.
+
+> **Shadcn v4:** Defaults to `base-nova` style (`@base-ui/react`). For Radix UI, use `--base radix`. Every `shadcn init` overwrites `globals.css` — restore HSL tokens afterward. Remove `@import "tw-animate-css"` and `@import "shadcn/tailwind.css"` (incompatible with Tailwind v3).
+
+> **Sharp corners:** `--radius: 0rem` alone is insufficient — Shadcn components use hardcoded `rounded-lg`. Map all `borderRadius` values in `tailwind.config.ts` to CSS variables (`var(--radius-lg)`, etc.) set to `0rem`.
+
+> **Full issue log:** `docs/issues/Issues_Phase_1.md`
 
 ---
 
