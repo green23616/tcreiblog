@@ -117,6 +117,7 @@ Add these after the CSS variables in `globals.css`:
 ## tailwind.config.ts
 
 ```typescript
+import typography from "@tailwindcss/typography";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -171,8 +172,8 @@ const config: Config = {
         ring: "hsl(var(--ring))",
       },
       fontFamily: {
-        sans: ["Geist", "Inter", "system-ui", "sans-serif"],
-        mono: ["Geist Mono", "JetBrains Mono", "monospace"],
+        sans: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "JetBrains Mono", "monospace"],
       },
       letterSpacing: {
         label: "var(--tracking-label)",     // 0.1em — metadata labels
@@ -187,6 +188,17 @@ const config: Config = {
       maxWidth: {
         reading: "var(--reading-width)",
         layout: "var(--layout-max)",
+      },
+      borderRadius: {
+        none: "0px",
+        sm: "var(--radius-sm)",
+        DEFAULT: "var(--radius)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        "2xl": "var(--radius-xl)",
+        "3xl": "var(--radius-xl)",
+        full: "9999px",
       },
       borderWidth: {
         active: "var(--border-active-width)", // 2px nav underline
@@ -205,16 +217,14 @@ const config: Config = {
             "--tw-prose-hr": "hsl(var(--border))",
             maxWidth: "var(--reading-width)",
             code: {
-              fontFamily: "Geist Mono, JetBrains Mono, monospace",
+              fontFamily: "var(--font-geist-mono), JetBrains Mono, monospace",
             },
           },
         },
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [typography],
 };
 
 export default config;
