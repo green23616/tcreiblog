@@ -63,11 +63,21 @@
 ## Phase 2: Auth
 
 ### Task 6: Login Page + OAuth
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/login/page.tsx`, `src/app/login/login-form.tsx`, `src/app/auth/callback/route.ts`
 - **Actions:** Server component checks if logged in (redirects to `/`). Client form with Google + GitHub buttons via `supabase.auth.signInWithOAuth`. Callback route exchanges code for session.
 - **Acceptance:** OAuth flow completes, profile auto-created, user redirected
 - **Commit:** `feat: add login page with Google/GitHub OAuth and callback`
+
+#### Phase 2 Notes
+
+> **Next.js 16 searchParams:** In Next.js 15+, `searchParams` and `params` in Server Components are Promises. Always type as `Promise<{...}>` and await before reading.
+
+> **CCG + Codex for code writing:** Codex's TDD skill will stop to ask about tests if Playwright isn't configured. Be explicit: "write implementation only, no tests" when Playwright is not yet set up (added in Task 18).
+
+> **web-design-guidelines workflow:** Complete in one pass — fetch URL, read files, output `file:line` findings. The persistent-mode stop hook fires until all three steps are done in the same response.
+
+> **Full issue log:** `docs/issues/Issues_Phase_2.md`
 
 ---
 
