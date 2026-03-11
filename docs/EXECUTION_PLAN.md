@@ -63,7 +63,7 @@
 ## Phase 2: Auth
 
 ### Task 6: Login Page + OAuth
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/login/page.tsx`, `src/app/login/login-form.tsx`, `src/app/auth/callback/route.ts`
 - **Actions:** Server component checks if logged in (redirects to `/`). Client form with Google + GitHub buttons via `supabase.auth.signInWithOAuth`. Callback route exchanges code for session.
 - **Acceptance:** OAuth flow completes, profile auto-created, user redirected
