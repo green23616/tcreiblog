@@ -21,9 +21,9 @@ tcrei blog — a developer blog platform for ~10 authors. Next.js 16 App Router 
 
 ```bash
 pnpm install          # install dependencies
-pnpm dev              # dev server (Turbopack)
+pnpm dev              # dev server
 pnpm build            # production build
-pnpm test:e2e         # Playwright E2E tests
+pnpm test:e2e         # Playwright E2E tests (added in Phase 6 — Task 18)
 ```
 
 ## Key Architecture Rules
@@ -43,8 +43,8 @@ pnpm test:e2e         # Playwright E2E tests
 | `src/lib/supabase/client.ts` | Supabase browser client |
 | `src/lib/supabase/middleware.ts` | Session refresh helper |
 | `src/middleware.ts` | Route protection |
-| `src/lib/queries.ts` | Shared DB queries |
-| `src/lib/actions.ts` | Server Actions (CRUD) |
+| `src/lib/queries.ts` | Shared DB queries *(added in Phase 4 — Task 9)* |
+| `src/lib/actions.ts` | Server Actions (CRUD) *(added in Phase 5 — Task 13)* |
 | `src/components/` | Shared components |
 | `src/app/globals.css` | CSS variables (design tokens) |
 | `tailwind.config.ts` | Tailwind configuration |
