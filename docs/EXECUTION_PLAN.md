@@ -84,7 +84,7 @@
 ## Phase 3: Shared Components
 
 ### Task 7: Layout Shell — Header, Nav, Dark Mode
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/components/site-header.tsx`, `src/components/theme-toggle.tsx`, `src/components/theme-provider.tsx`, `src/components/user-nav.tsx`, `src/app/layout.tsx`
 - **Dependencies:** Install `next-themes`
 - **Actions:** ThemeProvider wrapping app, header with logo + Tags link + UserNav + ThemeToggle. UserNav shows avatar/write link when logged in, "Sign in" when not.
@@ -92,11 +92,23 @@
 - **Commit:** `feat: add site header, dark mode toggle, and user nav`
 
 ### Task 8: PostCard, MetaLabel, TagPill
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/components/post-card.tsx`, `src/components/meta-label.tsx`, `src/components/tag-pill.tsx`
 - **Actions:** Build per component usage patterns in `docs/DESIGN_TOKENS.md`. PostCard: hairline border-top, tags + date row, title, excerpt, optional author handle. MetaLabel: uppercase tracking-label text-muted-foreground. TagPill: border pill linking to `/tags/[name]`.
 - **Acceptance:** Components render with correct token classes
 - **Commit:** `feat: add PostCard, MetaLabel, and TagPill components`
+
+#### Phase 3 Notes
+
+> **ThemeToggle pattern:** Use dual-icon CSS animation (`scale-0/scale-100` + `rotate` Tailwind transitions for Sun/Moon) instead of a `mounted` state check. Both icons stay in the DOM; Tailwind `dark:` variants control visibility. No hydration flash, no state needed.
+
+> **next-themes toggle:** Use `resolvedTheme` (not `theme`) for toggle condition. `theme` returns `"system"` when using system preference — `resolvedTheme` returns the actual applied value (`"light"` or `"dark"`).
+
+> **TagPill URLs:** Always `encodeURIComponent(tag)` in the href. Tag values are user-generated and may contain spaces or special characters.
+
+> **CCG flow with slow Codex:** Codex scans the actual codebase before responding (~5–6 min). When spec is clear and Gemini has reviewed, implement in parallel rather than blocking. Use Codex output as a post-hoc validator — it catches fine-grained details (encoding, resolvedTheme) worth reviewing even after files are written.
+
+> **Full issue log:** `docs/issues/Issues_Phase_3.md`
 
 ---
 
