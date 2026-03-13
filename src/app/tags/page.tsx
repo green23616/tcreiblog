@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { MetaLabel } from "@/components/meta-label";
 import { TagPill } from "@/components/tag-pill";
 import { getAllTags } from "@/lib/queries";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = {
+  title: "Tags",
+  description: "Browse all tags on tcrei blog",
+};
 
 export default async function TagsPage() {
   const supabase = await createClient();

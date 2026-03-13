@@ -1,28 +1,21 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
 
-export async function UserNav() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+interface UserNavProps {
+  avatarCharacter: string;
+  isLoggedIn: boolean;
+}
 
-  if (!user) {
+export function UserNav({ avatarCharacter, isLoggedIn }: UserNavProps) {
+  if (!isLoggedIn) {
     return (
       <Link
         href="/login"
-        className="text-sm uppercase tracking-label text-muted-foreground transition-colors hover:text-foreground"
+        className="text-sm uppercase tracking-label text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
       >
         Sign in
       </Link>
     );
   }
-
-  const displayName =
-    typeof user.user_metadata?.display_name === "string"
-      ? user.user_metadata.display_name
-      : null;
-  const avatarCharacter = (user.email ?? displayName ?? "u").charAt(0) || "u";
 
   return (
     <div className="flex items-center gap-3">
@@ -31,7 +24,7 @@ export async function UserNav() {
       </div>
       <Link
         href="/write"
-        className="text-sm uppercase tracking-label text-muted-foreground transition-colors hover:text-foreground"
+        className="text-sm uppercase tracking-label text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
       >
         Write
       </Link>

@@ -15,8 +15,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "tcrei blog",
+  metadataBase: new URL("https://tcrei.blog"),
+  title: { template: "%s | tcrei", default: "tcrei blog" },
   description: "A developer blog platform",
+  openGraph: {
+    type: "website",
+    siteName: "tcrei",
+    title: { template: "%s | tcrei", default: "tcrei blog" },
+    description: "A developer blog platform",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: { template: "%s | tcrei", default: "tcrei blog" },
+    description: "A developer blog platform",
+  },
 };
 
 export default function RootLayout({

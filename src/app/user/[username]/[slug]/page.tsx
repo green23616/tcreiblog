@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
@@ -8,6 +9,31 @@ import { createClient } from "@/lib/supabase/server";
 
 interface PostPageProps {
   params: Promise<{ username: string; slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const { username, slug } = await params;
+  const supabase = await createClient();
+  const result = await getPost(supabase, username, slug);
+
+  if (!result) {
+    return {};
+  }
+
+  const { post } = result;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.published_at,
+    },
+  };
 }
 
 export default async function PostPage({ params }: PostPageProps) {

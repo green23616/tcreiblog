@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MetaLabel } from "@/components/meta-label";
@@ -7,6 +8,26 @@ import { createClient } from "@/lib/supabase/server";
 
 interface AuthorPageProps {
   params: Promise<{ username: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: AuthorPageProps): Promise<Metadata> {
+  const { username } = await params;
+  const supabase = await createClient();
+  const result = await getPostsByAuthor(supabase, username);
+
+  if (!result) {
+    return {};
+  }
+
+  const title = result.profile.display_name || `@${result.profile.username}`;
+  const description = result.profile.bio || `Posts by @${result.profile.username}`;
+
+  return {
+    title,
+    description,
+  };
 }
 
 export default async function AuthorPage({ params }: AuthorPageProps) {
