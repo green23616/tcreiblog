@@ -115,32 +115,52 @@
 ## Phase 4: Public Pages
 
 ### Task 9: Homepage `/`
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/page.tsx`, `src/lib/queries.ts`
 - **Actions:** Create shared queries module. Homepage fetches recent posts with author + tags, renders PostCards, adds pagination.
 - **Acceptance:** Posts display in reverse chronological order, pagination works
 - **Commit:** `feat: add homepage with recent posts and pagination`
 
 ### Task 10: Author Page `/@[username]`
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `next.config.ts`, `src/app/user/[username]/page.tsx`
 - **Actions:** Add Next.js rewrites (`/@:username` → `/user/:username`). Create author page with profile header + post list.
 - **Acceptance:** `/@username` URL resolves, shows author profile + their posts
 - **Commit:** `feat: add author page with profile header and post list`
 
 ### Task 11: Post Detail `/@[username]/[slug]`
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/user/[username]/[slug]/page.tsx`, `src/components/markdown-renderer.tsx`
 - **Actions:** Create markdown renderer with react-markdown + remark-gfm + rehype-highlight + rehype-sanitize. Build 2-column layout (sidebar metadata + main prose). Add reading time estimate.
 - **Acceptance:** Markdown renders with syntax highlighting, 2-col layout on lg+, collapses on mobile
 - **Commit:** `feat: add post detail page with 2-column layout and markdown rendering`
 
 ### Task 12: Tags Pages
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/tags/page.tsx`, `src/app/tags/[tag]/page.tsx`
 - **Actions:** Tag index shows all tags with post counts. Tag filter page shows posts for that tag using PostCard.
 - **Acceptance:** `/tags` lists all tags, `/tags/[name]` shows filtered posts
 - **Commit:** `feat: add tag index and tag filter pages`
+
+#### Phase 4 Notes
+
+> **Supabase join type mismatch:** Supabase infers `profiles` (many-to-one join) as an array in TypeScript even though it returns a single object at runtime. Define `RawPostRow` with `profiles` typed as `object | Array<object> | null` and a `normalizePost()` function to normalize both shapes. Never use `as unknown as Post[]` — the linter removes `unknown`.
+
+> **Supabase `.in()` requires an array:** `.in('id', queryBuilder)` fails — `.in()` does not accept a Supabase query builder. Use a two-query pattern: first fetch IDs as `string[]`, then pass the array to `.in()`.
+
+> **Supabase PGRST116:** Error code `"PGRST116"` means no rows found (`.single()` with no match). Use a named constant + `isNoRowsError()` helper to distinguish from real errors and avoid throwing on 404s.
+
+> **`!inner` join for filtering:** To filter posts by tag, use `from('post_tags').select('post_id, tags!inner(name)').eq('tags.name', tagName)` — `!inner` makes the join required, which enables the `.eq()` filter on the related table.
+
+> **MetaLabel `as` prop:** The linter always strips the `as` prop from MetaLabel. For block-level or semantic headings, wrap with a native element: `<h1 className="mb-8"><MetaLabel>...</MetaLabel></h1>`.
+
+> **`next/image` for OAuth avatars:** Use `<Image unoptimized>` for OAuth avatar URLs — no domain whitelist config needed, and linter replaces `<img>` with `<Image>` automatically.
+
+> **Website URL safety:** Always guard external links: `href={url.startsWith('http') ? url : 'https://' + url}`. Without this, bare `example.com` values produce broken relative links.
+
+> **`sr-only` h1 on headingless pages:** Pages without a visible primary heading (homepage, tags index) need `<h1 className="sr-only">...</h1>` for accessibility and heading hierarchy.
+
+> **Full issue log:** `docs/issues/Issues_Phase_4.md`
 
 ---
 
