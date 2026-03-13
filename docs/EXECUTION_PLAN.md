@@ -167,25 +167,39 @@
 ## Phase 5: Protected Pages
 
 ### Task 13: Write Page `/write`
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/write/page.tsx`, `src/components/post-editor.tsx`, `src/components/tag-input.tsx`, `src/lib/actions.ts`
 - **Actions:** Create Server Actions for createPost (slug generation, excerpt auto-generation, tag upsert). Build PostEditor client component with EasyMDE (dynamic import, no SSR). Build TagInput with autocomplete. Wire write page.
 - **Acceptance:** Can create a post with title, content, tags. Post appears on homepage and author page. Tags created if new.
 - **Commit:** `feat: add write page with markdown editor, tag input, and server actions`
 
 ### Task 14: Edit Page `/edit/[id]`
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/edit/[id]/page.tsx`
 - **Actions:** Load existing post (verify ownership), reuse PostEditor with initial values. Add updatePost and deletePost server actions.
 - **Acceptance:** Can edit title/content/tags, can delete post. RLS prevents editing others' posts.
 - **Commit:** `feat: add edit page with update and delete actions`
 
 ### Task 15: Settings Page `/settings`
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/settings/page.tsx`, `src/app/settings/settings-form.tsx`
 - **Actions:** Server component loads profile, client form for editing. Add updateProfile server action. Show connected OAuth provider (read-only).
 - **Acceptance:** Can update username, display name, bio, website. Username uniqueness enforced.
 - **Commit:** `feat: add settings page with profile form`
+
+#### Phase 5 Notes
+
+> **EasyMDE SSR guard:** Don't wrap a `"use client"` component in `dynamic({ ssr: false })` from a Server Component — build will fail. If the component guards browser-only code in `useEffect`, a direct import is sufficient.
+
+> **Supabase nested join casts:** Always use `as unknown as TargetType` when casting nested join results (e.g. `post_tags(tags(name))`). Direct `as TargetType` fails TypeScript's overlap check.
+
+> **Write page username guard:** Redirect to `/settings` on `/write` if the user has no username. The `createPost` action needs a username for the redirect URL — publishing without one breaks the flow.
+
+> **EasyMDE dark mode:** Override `.CodeMirror`, `.editor-toolbar`, `.editor-preview`, and `.editor-preview-side` in `globals.css` using `hsl(var(--background))` etc. EasyMDE injects hardcoded light-theme styles that ignore Tailwind's dark mode.
+
+> **CCG role assignment:** Claude is command center only — Codex writes all implementation code. If Codex fails, ask the user; do not self-implement. `execute-next-phase` skill and memory updated.
+
+> **Full issue log:** `docs/issues/Issues_Phase_5.md`
 
 ---
 
