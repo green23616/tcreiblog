@@ -206,29 +206,43 @@
 ## Phase 6: Polish
 
 ### Task 16: Mobile Responsive Nav
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/components/mobile-nav.tsx`, `src/components/site-header.tsx`
 - **Actions:** Hamburger menu on mobile (`md:hidden`), full nav on desktop (`hidden md:flex`).
 - **Acceptance:** Nav collapses to hamburger on mobile, all links accessible
 - **Commit:** `feat: add responsive mobile navigation`
 
 ### Task 17: SEO Metadata
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `src/app/user/[username]/page.tsx`, `src/app/user/[username]/[slug]/page.tsx`, `src/app/layout.tsx`
 - **Actions:** Add `generateMetadata` to post detail and author pages. Include OpenGraph tags.
 - **Acceptance:** Page titles and descriptions correct, OG tags present
 - **Commit:** `feat: add SEO metadata to post and author pages`
 
 ### Task 18: E2E Tests
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `playwright.config.ts`, `tests/e2e-critical-flows.spec.ts`
 - **Actions:** Configure Playwright. Test: homepage loads, tags page loads, login page loads, protected routes redirect.
 - **Acceptance:** `pnpm test:e2e` passes
 - **Commit:** `feat: add Playwright E2E tests for critical flows`
 
 ### Task 19: Finalize CLAUDE.md
-- **Status:** `[ ]`
+- **Status:** `[x]`
 - **Files:** `CLAUDE.md`
 - **Actions:** Update with actual build commands, verified key paths, and architecture summary.
 - **Acceptance:** New Claude Code session can orient using CLAUDE.md alone
 - **Commit:** `docs: finalize CLAUDE.md with project context`
+
+#### Phase 6 Notes
+
+> **Codex brainstorming gate:** If the prompt leaves behavioral decisions open (e.g. "where does the avatar link?"), Codex stops to ask. State every UX decision explicitly and add "no clarifying questions" to suppress the gate.
+
+> **Mobile nav focus trap:** Close-on-Escape alone is insufficient for accessibility. A proper focus trap needs Tab/Shift-Tab cycling within the panel using a focusable-element query. The linter can fill this gap, but plan for it explicitly in the Codex prompt.
+
+> **CSS transitions:** Use `transition-[transform,opacity]` instead of `transition-all` for animated overlays. `transition-all` triggers layout recalculations for every property.
+
+> **Linter race on concurrent edits:** After Gemini post-code review, the linter may apply changes faster than a manual edit. Always re-read a file before editing. If the linter's version is more complete, keep it.
+
+> **`transition-all` performance:** Codex defaults to `transition-all` on overlays. Always scope transitions to the specific animated properties (`transform`, `opacity`).
+
+> **Full issue log:** `docs/issues/Issues_Phase_6.md`

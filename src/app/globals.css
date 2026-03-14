@@ -92,3 +92,43 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* EasyMDE dark mode overrides */
+.dark .CodeMirror {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+.dark .editor-toolbar {
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--border));
+}
+
+.dark .editor-toolbar a {
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .editor-toolbar a:hover,
+.dark .editor-toolbar a.active {
+  background: hsl(var(--accent));
+  border-color: hsl(var(--border));
+}
+
+.dark .editor-toolbar i.separator {
+  border-color: hsl(var(--border));
+}
+
+.dark .CodeMirror-cursor {
+  border-left-color: hsl(var(--foreground));
+}
+
+.dark .editor-preview {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.dark .editor-preview-side {
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--border));
+}

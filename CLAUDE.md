@@ -23,7 +23,9 @@ tcrei blog — a developer blog platform for ~10 authors. Next.js 16 App Router 
 pnpm install          # install dependencies
 pnpm dev              # dev server
 pnpm build            # production build
-pnpm test:e2e         # Playwright E2E tests (added in Phase 6 — Task 18)
+pnpm lint             # run ESLint
+pnpm test:e2e         # Playwright E2E tests
+pnpm test:e2e:ui      # Playwright UI mode
 ```
 
 ## Key Architecture Rules
@@ -43,8 +45,21 @@ pnpm test:e2e         # Playwright E2E tests (added in Phase 6 — Task 18)
 | `src/lib/supabase/client.ts` | Supabase browser client |
 | `src/lib/supabase/middleware.ts` | Session refresh helper |
 | `src/middleware.ts` | Route protection |
-| `src/lib/queries.ts` | Shared DB queries *(added in Phase 4 — Task 9)* |
-| `src/lib/actions.ts` | Server Actions (CRUD) *(added in Phase 5 — Task 13)* |
+| `src/lib/queries.ts` | Shared read queries for posts, profiles, and tags |
+| `src/lib/actions.ts` | Server Actions for posts and profile mutations |
 | `src/components/` | Shared components |
+| `src/components/mobile-nav.tsx` | Mobile nav overlay for signed-in and signed-out states |
+| `src/components/site-header.tsx` | Sticky header shell with desktop and mobile nav variants |
+| `src/components/user-nav.tsx` | Desktop auth-aware nav fragment |
 | `src/app/globals.css` | CSS variables (design tokens) |
 | `tailwind.config.ts` | Tailwind configuration |
+| `playwright.config.ts` | Playwright runner configuration |
+| `tests/e2e-critical-flows.spec.ts` | Critical-path browser smoke tests |
+
+## Architecture Learnings
+
+- Next.js 16: `params` and `searchParams` are `Promise<{...}>` in App Router server entries. Always await them before reading fields.
+- Supabase nested join casts need `as unknown as TargetType` when TypeScript overlap checks reject the direct cast.
+- EasyMDE: do not use `dynamic({ ssr: false })` in Server Components. Import the client component normally and guard browser-only setup in `useEffect`.
+- Supabase join types: profile joins often type as arrays even when the runtime response is singular. Normalize them through the existing `normalizePost()` pattern.
+- Sharp corners: `--radius: 0rem` is global, and every Tailwind border radius token in `tailwind.config.ts` should map back to those CSS variables so components stay square by default.
